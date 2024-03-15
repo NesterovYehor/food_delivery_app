@@ -4,8 +4,8 @@ import 'package:food_delivery_app/components/my_textfield.dart';
 import 'package:food_delivery_app/screens/auth/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class SingUpView extends StatelessWidget {
+  const SingUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +28,20 @@ class LoginView extends StatelessWidget {
 
               MyTextField(controler: vm.passwordTextEditingController, obscureText: true, hintText: 'Password',),
 
+              const SizedBox(height: 10,),
+
+              MyTextField(controler: vm.confirmPasswordTextEditingController, obscureText: true, hintText: 'Confirm password',),
+
               const SizedBox(height: 25,),
 
-              MyButton(onTap: vm.logIn, text: "LogIn"),
+              MyButton(onTap: vm.signUp, text: "SignUp"),
 
               const SizedBox(height: 25,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Not a member?", 
+                  Text("Already have an account?", 
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary)
                     ),
@@ -45,8 +49,8 @@ class LoginView extends StatelessWidget {
                   const SizedBox(width: 5,),
 
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, '/signup'),
-                    child: Text("Register now", 
+                    onTap: () => Navigator.pushNamed(context, '/login'),
+                    child: Text("Login here", 
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.inversePrimary, 
                       fontWeight: FontWeight.bold
@@ -55,7 +59,6 @@ class LoginView extends StatelessWidget {
                   )
                 ],
               )
-
             ],
           ),
         );

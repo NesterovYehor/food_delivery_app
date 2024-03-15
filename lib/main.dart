@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/screens/auth/auth_viewmodel.dart';
 import 'package:food_delivery_app/screens/auth/login_view.dart';
+import 'package:food_delivery_app/screens/auth/singup_view.dart';
+import 'package:food_delivery_app/screens/core_view.dart';
+import 'package:food_delivery_app/screens/settings/settings_view.dart';
 import 'package:food_delivery_app/themes/theme_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(
     ChangeNotifierProvider(create: (context) => ThemeProvider(),
     child: const MyApp(),
-    )
+      )
     );
 }
 
@@ -21,8 +30,13 @@ class MyApp extends StatelessWidget {
       providers: [ChangeNotifierProvider(create: (context) => AuthViewModel())],
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const LoginView(),
+        home: CoreView(),
         theme: Provider.of<ThemeProvider>(context).themeData,
+        routes: <String, WidgetBuilder>{
+          "/signup": (context) => const SingUpView(),
+          "/login":(context) => const LoginView(),
+          "/settings":(context) => const SettingsView(),
+        },
       ),
     );
   }
