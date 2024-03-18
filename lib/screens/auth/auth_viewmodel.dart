@@ -7,9 +7,9 @@ class AuthViewModel extends ChangeNotifier{
   final confirmPasswordTextEditingController = TextEditingController();
   final _auth = AuthService();
 
-  void signUp(){
+  Future<void> signUp() async{
     if (emailTextEditingController.text.isNotEmpty && passwordTextEditingController.text == confirmPasswordTextEditingController.text){
-      _auth.signUp(emailTextEditingController.text, passwordTextEditingController.text);
+     await  _auth.signUp(emailTextEditingController.text, passwordTextEditingController.text);
       emailTextEditingController.clear();
       passwordTextEditingController.clear();
       confirmPasswordTextEditingController.clear();
@@ -18,9 +18,9 @@ class AuthViewModel extends ChangeNotifier{
     }
   }
 
-  void logIn(){
+  Future<void> logIn() async{
     if (emailTextEditingController.text.isNotEmpty && passwordTextEditingController.text.isNotEmpty){
-      _auth.signIn(emailTextEditingController.text, passwordTextEditingController.text);
+      await _auth.signIn(emailTextEditingController.text, passwordTextEditingController.text);
       emailTextEditingController.clear();
       passwordTextEditingController.clear();
     }

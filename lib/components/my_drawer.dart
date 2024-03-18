@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/components/my_drawer_tile.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  const MyDrawer({super.key, required this.onTap});
+
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class MyDrawer extends StatelessWidget {
               text: "L O G O U T", 
               icon: Icons.logout, 
               onTap: () { 
+                onTap?.call();
                 Navigator.pop(context);
                 
               }

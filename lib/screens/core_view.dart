@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/screens/auth/login_view.dart';
 import 'package:food_delivery_app/screens/home/home_view.dart';
 
-class CoreView extends StatelessWidget {
+class CoreView extends StatefulWidget {
   CoreView({Key? key}) : super(key: key);
 
+  @override
+  State<CoreView> createState() => _CoreViewState();
+}
+
+class _CoreViewState extends State<CoreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +23,9 @@ class CoreView extends StatelessWidget {
             return Text('Error: ${snapshot.error}'); 
           } else {
             if (snapshot.hasData && snapshot.data != null) {
-              return HomeView(); 
+              return const HomeView(); 
             } else {
-              return LoginView(); 
+              return const LoginView(); 
             }
           }
         },
